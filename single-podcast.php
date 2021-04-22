@@ -22,7 +22,7 @@ get_header();
         background-color: white;
         box-sizing: border-box;
         padding: 1em 3rem;
-        border-color: #FFA658;
+        border-color: #013B48;
         border-style: double;
         transition-duration: 0, 4s;
     }
@@ -31,11 +31,19 @@ get_header();
         background-color: #FFF8E4;
     }
 
-    article {
+    #episodevisning {
         display: grid;
         grid-template-columns: 1fr 1fr;
         padding-bottom: 1rem;
         grid-gap: 5px;
+    }
+
+    #episoder {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        padding-bottom: 1rem;
+        grid-gap: 20px;
     }
 
     main#main {
@@ -48,7 +56,14 @@ get_header();
 
     .billede {
         margin-top: 3rem;
-        width: 70%;
+        width: 80%;
+    }
+
+    .epibillede {
+        width: 60%;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
     }
 
     h3 {
@@ -71,7 +86,7 @@ get_header();
             <button>Tilbage til podcasts</button>
         </div>
 
-        <article>
+        <article id="episodevisning">
             <div>
                 <img class="billede" src="" alt="">
             </div>
@@ -82,27 +97,71 @@ get_header();
             </div>
         </article>
 
+        <section id="episoder">
+            <template>
+                <article id="episodergrid">
+                    <div>
+                        <img src="" class="epibillede" alt="">
+                    </div>
+                    <div>
+                        <h3 class="epinavn">
+                        </h3>
+                        <p class="epibeskrivelse"></p>
+                        <a href="">læs mere</a>
+                    </div>
+                </article>
+            </template>
+        </section>
+
     </main>
 
     <script>
         let podcast;
+        let episoder;
+        let aktuelpodcast = <?php echo get_the_ID() ?>;
 
-        const dbUrl = "https://julielykkechristensen.dk/radioloud/wp-json/wp/v2/podcast/" + <?php echo get_the_ID() ?>;
+        const dbUrl = "https://julielykkechristensen.dk/radioloud/wp-json/wp/v2/podcast/" + aktuelpodcast;
+        const episodeUrl = "https://julielykkechristensen.dk/radioloud/wp-json/wp/v2/episode?per_page=100";
+
+        const container = document.querySelector("#episoder");
 
         async function getJson() {
             const data = await fetch(dbUrl);
             podcast = await data.json();
+
+            const data2 = await fetch(episodeUrl);
+            episoder = await data2.json();
+            console.log("episoder: ", episoder);
+
             visPodcast();
+            visEpisoder();
         }
 
         function visPodcast() {
-            console.log("hej med dig");
-            document.querySelector(".navn").textContent = podcast.title;
+            console.log("hej med dig", podcast);
+            document.querySelector(".navn").textContent = podcast.title.rendered;
             document.querySelector(".billede").src = podcast.billede.guid;
             document.querySelector(".beskrivelse").textContent = podcast.beskrivelse;
             document.querySelector("button").addEventListener("click", tilbageTilPodcasts);
+        }
 
-
+        function visEpisoder() {
+            console.log("visEpisoder");
+            let temp = document.querySelector("template");
+            episoder.forEach(episode => {
+                console.log("loop id :", aktuelpodcast);
+                console.log("episode :", episode);
+                if (episode.horer_til_podcast == aktuelpodcast) {
+                    console.log("loop kører id :", aktuelpodcast);
+                    let klon = temp.cloneNode(true).content;
+                    klon.querySelector(".epinavn").innerHTML = episode.title.rendered;
+                    klon.querySelector(".epibeskrivelse").innerHTML = episode.beskrivelse;
+                    klon.querySelector(".epibillede").src = episode.billede.guid;
+                    klon.querySelector("article").addEventListener("click", () => {})
+                    klon.querySelector("a").href = episode.link;
+                    container.appendChild(klon);
+                }
+            })
         }
 
         function tilbageTilPodcasts() {
