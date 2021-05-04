@@ -14,104 +14,260 @@ get_header();
 
 
 <style>
-    button {
-        margin-top: 7rem;
-        border-radius: 50px;
-        text-align: center;
-        cursor: pointer;
-        background-color: white;
-        box-sizing: border-box;
-        padding: 1em 3rem;
-        border-color: #013B48;
-        border-style: double;
-        transition-duration: 0, 4s;
+    main#main {
+        margin: 0rem;
     }
 
-    button:hover {
-        background-color: #FFF8E4;
+    audio {
+        margin-top: 1rem;
+
     }
+
 
     #episodevisning {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        margin-top: 5.5rem;
+        display: flex;
+        /*        grid-template-rows: 1fr 1fr;*/
         padding-bottom: 1rem;
-        grid-gap: 5px;
-    }
+        flex-direction: column;
 
-    #episoder {
-        margin-top: 2rem;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        padding-bottom: 1rem;
-        grid-gap: 20px;
-    }
-
-    main#main {
-        margin: 0 3.5rem;
     }
 
     .tekst {
-        margin-top: 3rem;
+        padding: 2rem 2rem;
+        background-color: #FFF8E6;
     }
+
 
     .billede {
-        margin-top: 3rem;
-        width: 80%;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
     }
 
-    .epibillede {
-        width: 60%;
+    #episodergrid {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        grid-gap: 40px;
+        padding-bottom: 2rem;
+    }
+
+    .streaming1,
+    .streaming2,
+    .streaming3 {
+        width: 100%;
+        padding-top: 2rem;
+    }
+
+    .streaming_grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-gap: 15px;
+    }
+
+    .streaming1 {
+        grid-column: 3/4;
         display: block;
         margin-right: auto;
         margin-left: auto;
     }
 
+    .streaming2 {
+        grid-column: 4/5;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .streaming3 {
+        grid-column: 5/6;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    #episoder {
+        margin: 1.5em;
+    }
+
+
     h3 {
-        font-size: 1rem;
-        font-family: 'Open Sans', sans-serif;
+        padding-top: 1rem;
+        font-weight: 600;
+        font-size: 25px;
+    }
+
+    h2 {
+        padding-top: 1rem;
+        padding-bottom: 1.5rem;
+        font-size: 29px;
+    }
+
+    h4 {
+        font-weight: 600;
+    }
+
+
+    p {
+        font-size: 13px;
+    }
+
+    .tilbage {
+        font-weight: 300;
+        color: #CA2D40;
+    }
+
+    .tilbage:hover {
         color: black;
     }
 
-    p {
-        font-family: 'Open Sans', sans-serif;
-        font-size: 0.7rem;
-        color: black;
+
+
+    @media (min-width: 700px) {
+
+
+        button {
+            margin-top: 3rem;
+            padding: 1em 3rem;
+        }
+
+        #episodevisning {
+            flex-direction: row;
+
+        }
+
+        .episodebillede {
+            order: 2;
+        }
+
+        .image {
+            grid-column: 1/2;
+        }
+
+        .info {
+            grid-column: 2/3;
+            padding-right: 3.5rem;
+        }
+
+        .tekst {
+            padding: 2rem 2rem;
+            background-color: #FFF8E6;
+            width: 180vw;
+        }
+
+
+        .billede {
+            height: 100%;
+            width: 100%;
+        }
+
+        .epibillede {
+            width: 60%;
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .epibeskrivelse {
+            font-size: 14px;
+            padding-right: 4.5rem;
+
+        }
+
+        h2 {
+            padding-top: 2rem;
+            font-size: 2.6rem;
+            color: black;
+            font-weight: 500;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        audio {
+            margin-top: 1rem;
+            width: 70%;
+
+        }
+
+        h4 {
+            font-size: 1rem;
+            margin-top: 1.5rem;
+            font-weight: 600;
+        }
+
+        p {
+            line-height: 30px;
+            font-size: 15px;
+            color: black;
+        }
+
+
+        .streaming1,
+        .streaming2,
+        .streaming3 {
+            width: 50%;
+        }
+
+        .et_fullwidth_nav #main-header .container {
+            background-color: white;
+        }
+
     }
 
 </style>
 
+
 <section id="primary" class="content-area">
     <main id="main" class="site-main">
-        <div class="knap">
-            <button>Tilbage til podcasts</button>
-        </div>
+
 
         <article id="episodevisning">
-            <div>
+            <div class="episodebillede">
                 <img class="billede" src="" alt="">
             </div>
             <div class="tekst">
-                <h3 class="navn">
-                </h3>
+                <p></p>
+                <a href="https://julielykkechristensen.dk/radioloud/podcasts/" class="tilbage">← TILBAGE TIL PODCASTS</a>
+                <h2 class="navn">
+                </h2>
                 <p class="beskrivelse"></p>
+                <div class="streaming_grid">
+                    <img src="/radioloud/wp-content/themes/child/images/google.png" class="streaming1">
+                    <img src="/radioloud/wp-content/themes/child/images/podimo.png" class="streaming2">
+                    <img src="/radioloud/wp-content/themes/child/images/Apple_podcast.png" class="streaming3">
+                </div>
             </div>
         </article>
 
         <section id="episoder">
+            <h3>ALLE episoder</h3>
             <template>
                 <article id="episodergrid">
-                    <div>
+                    <div class="image">
                         <img src="" class="epibillede" alt="">
                     </div>
-                    <div>
-                        <h3 class="epinavn">
-                        </h3>
+                    <div class="info">
+                        <h4 class="epinavn">
+                        </h4>
                         <p class="epibeskrivelse"></p>
-                        <a href="">læs mere</a>
+                        <!--                        <button class="afspil">AFSPIL</button>-->
+                        <audio controls>
+                            <source src="" id="lyd">
+                        </audio>
                     </div>
+                    <!--
+                    <audio controls>
+                        <source src="" id="lyd">
+                    </audio>
+-->
                 </article>
             </template>
         </section>
+
+        <!--        <audio src="https://api.spreaker.com/v2/episodes/42540723/play.mp3" id="lyd"></audio>-->
 
     </main>
 
@@ -142,7 +298,7 @@ get_header();
             document.querySelector(".navn").textContent = podcast.title.rendered;
             document.querySelector(".billede").src = podcast.billede.guid;
             document.querySelector(".beskrivelse").textContent = podcast.beskrivelse;
-            document.querySelector("button").addEventListener("click", tilbageTilPodcasts);
+            //            document.querySelector("button").addEventListener("click", tilbageTilPodcasts);
         }
 
         function visEpisoder() {
@@ -157,18 +313,30 @@ get_header();
                     klon.querySelector(".epinavn").innerHTML = episode.title.rendered;
                     klon.querySelector(".epibeskrivelse").innerHTML = episode.beskrivelse;
                     klon.querySelector(".epibillede").src = episode.billede.guid;
-                    klon.querySelector("article").addEventListener("click", () => {})
-                    klon.querySelector("a").href = episode.link;
+                    klon.querySelector("#lyd").src = episode.podcast_lyd;
+                    //                    klon.querySelector(".afspil").addEventListener("click", spilPodcast)
                     container.appendChild(klon);
                 }
             })
+            //  spilPodcast();
         }
 
-        function tilbageTilPodcasts() {
-            //history = webapi for at komme baglængs, hvis vi kalder back kommer vi et hak tilbage i browserhistorien (dermed tilbage til 01-kald.html)
-            history.back();
-
+        function spilPodcast() {
+            console.log("THIS PARENT ELEMENT", this.parentElement.parentElement);
+            //    console.log("THIS", audio_object);
+            this.parentElement.parentElement.querySelector("#lyd").play();
+            // document.querySelector(".afspil").addEventListener("click", spilPodcast);
+            // audio_object.play();
+            // audio_object.volume = 1;
         }
+
+        //        function tilbageTilPodcasts() {
+        //            //history = webapi for at komme baglængs, hvis vi kalder back kommer vi et hak tilbage i browserhistorien (dermed tilbage til 01-kald.html)
+        //            history.back();
+        //
+        //        }
+
+
 
         getJson();
 

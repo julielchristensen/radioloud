@@ -10,7 +10,7 @@
  */
 get_header();
 ?>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&family=Open+Sans:wght@300;400;600&family=Titillium+Web:wght@200;300;400;600&display=swap" rel="stylesheet">
+
 <style>
     img {
         cursor: pointer;
@@ -38,31 +38,35 @@ get_header();
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         grid-gap: 20px;
+        padding-bottom: 2rem;
+        margin: 2rem;
     }
 
     #top {
         margin-top: 6rem;
+        /*
         display: grid;
         grid-template-columns: 2fr 1fr;
+*/
     }
 
     .tekst {
         background-color: #FFF8E4;
-        padding: 4rem;
+        padding: 2rem;
     }
 
-    .højre {
-        background-image: imageurl
+    .gif {
+        position: absolute;
+        left: 144px;
+        top: 79px;
+        width: 23%;
     }
+
 
     .logobillede {
         width: 60%;
     }
 
-
-    main#main {
-        margin: 0 3.5rem;
-    }
 
     h2 {
         font-size: 50px;
@@ -81,32 +85,93 @@ get_header();
     }
 
     button {
-        margin: 20px;
+        margin: 5px;
         border-radius: 50px;
         text-align: center;
         cursor: pointer;
         background-color: white;
         box-sizing: border-box;
-        padding: 1em 3rem;
+        padding: 1em 2rem;
         border-color: #013B48;
         border-style: double;
         transition-duration: 0, 4s;
+        display: inline-block;
+        color: black;
     }
 
-    button:hover {
-        background-color: #FFF8E4;
+    .filter:hover {
+        background-color: #DFEAE2;
     }
 
-    button:active {
-        background-color: #FFF8E4;
-    }
+
 
     #filtrering {
-        text-align: center;
+        padding-left: 2rem;
+        padding-bottom: 2rem;
+        overflow: auto;
+        white-space: nowrap;
+    }
+
+    filter:active {
+        background-color: #DFEAE2;
+    }
+
+    /*
+    .filter {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    }
+*/
+
+    .hoejre {
+        position: relative;
     }
 
     .et_fullwidth_nav #main-header .container {
         background-color: white;
+    }
+
+    @media (min-width: 700px) {
+
+        #filtrering {
+            text-align: center;
+        }
+
+        .gif {
+            left: 189px;
+            top: 94px;
+        }
+
+
+        button {
+            margin: 20px;
+            padding: 1em 3rem;
+        }
+
+        main#main {
+            margin: 0 3.5rem;
+        }
+
+        #filtrering {
+            margin-bottom: 2rem;
+        }
+
+        #top {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+        }
+
+        .tekst {
+            padding: 4rem;
+        }
+
+        .banner {
+            width: 100%;
+            height: 100%;
+        }
+
+
     }
 
 </style>
@@ -115,8 +180,13 @@ get_header();
     <div class="tekst">
         <h2>Podcast</h2>
         <p>Herunder har vi samlet alle vores podcasts, så du nemt kan finde frem til lige præcis den, du gerne vil høre. Hvis du vil høre mere om hver enkel podcast kan du klikke ind på den enkelte og læse mere.</p>
+        <p>Du kan lytte til alle vores podcasts på: Spotify, Google Podcasts, Podimo og Apple Podcasts.</p>
     </div>
-    <div class="højre">
+    <div class="hoejre">
+        <img src="/radioloud/wp-content/themes/child/images/bannerimg.png" class="banner" alt="">
+        <div class="giff">
+            <img src="/radioloud/wp-content/themes/child/images/gifmaker.gif" class="gif" alt="">
+        </div>
     </div>
 
 </section>
@@ -130,6 +200,7 @@ get_header();
         </article>
     </template>
 </section>
+
 <section id="primary" class="content-area">
 
     <main id="main" class="site-main">
